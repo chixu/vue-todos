@@ -1,28 +1,53 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <!-- <TodoMain /> -->
+    <TodoMain v-if="logined" />
+    <Login v-else />
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoMain from "./components/TodoMain.vue";
+import Login from "./components/Login.vue";
+// import Today from "./components/Today.vue";
+// import Calendar from "./components/Calendar.vue";
+// import Menu from "./components/Menu.vue";
+// import Topbar from "./components/Topbar.vue";
+import { mapState, mapActions } from "vuex";
+import { api } from "./utils/http";
 
 export default {
-  name: 'App',
+  name: "App",
+  computed: {
+    ...mapState("user", ["logined"])
+  },
   components: {
-    HelloWorld
+    TodoMain,
+    Login
+  },
+  methods: {
+    ...mapActions("user", ["login"])
+  },
+  mounted() {
+    api("connect")
+      .then(res => {
+        console.log("connected", res);
+        this.login(res);
+      })
+      .catch(err => {
+        console.warn(err);
+      });
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.main-content {
+  margin-left: 0px;
+  transition: margin-left 0.2s;
+}
+
+.main-content-showmenu {
+  margin-left: 256px;
 }
 </style>
