@@ -17,8 +17,10 @@
               <v-radio v-for="o in repeatOptions" :key="o.value" :label="o.text" :value="o.value"></v-radio>
             </v-radio-group>
           </div>
-          <div v-else class="d-flex">
+          <v-row class="mx-0" v-else>
             <v-text-field
+              cols="6"
+              sm="12"
               :class="{'mr-5':showPicker }"
               v-model="dateRangeText"
               @focus="onDateFocus(true)"
@@ -26,7 +28,7 @@
               :prepend-icon="calendarSvg"
               readonly
             ></v-text-field>
-            <v-date-picker v-if="showPicker" v-model="dates" range no-title></v-date-picker>
+            <v-date-picker cols="6" sm="12" v-if="showPicker" v-model="dates" range no-title></v-date-picker>
             <!-- <v-menu
             ref="menu"
             v-model="menu"
@@ -51,7 +53,7 @@
               <v-btn text color="primary" @click="$refs.menu.save(date)">OK</v-btn>
             </v-date-picker>
             </v-menu>-->
-          </div>
+          </v-row>
         </v-card-text>
       </v-form>
       <v-card-actions>
@@ -104,9 +106,9 @@ export default {
       repeat: false,
       repeatOption: "day",
       repeatOptions: [
-        { text: "Everyday", value: "day" },
-        { text: "Every weekdays", value: "weekdays" },
-        { text: "Every weekends", value: "weekends" }
+        { text: "Everyday", value: "day" }
+        // { text: "Every weekdays", value: "weekdays" },
+        // { text: "Every weekends", value: "weekends" }
       ]
     };
   },

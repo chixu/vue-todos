@@ -38,8 +38,8 @@ import { mapActions, mapGetters, mapState } from "vuex";
 
 export default {
   data: () => ({
-    username: "",
-    password: ""
+    username: "Demo",
+    password: "1"
   }),
   methods: {
     ...mapActions("user", ["login"]),
