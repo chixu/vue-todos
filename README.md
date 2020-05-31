@@ -21,6 +21,9 @@ npm run build
 ```
 
 ### Features
+
+![Screenshot](http://chixu.info/profile/images/todos-full.jpg)
+
 - Add Todo on a specifiy day.
 - Add Todo in a range of days.
 - Add repeatable Todo in the following days.
