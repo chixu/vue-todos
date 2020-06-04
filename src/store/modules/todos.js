@@ -51,6 +51,7 @@ const actions = {
       console.log('dotask', res);
       commit('setTodos', res);
       dispatch('getCalendar');
+      dispatch('getTodosDone');
     });
   },
   undoTask({ commit, dispatch }, data) {

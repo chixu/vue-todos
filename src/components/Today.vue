@@ -4,7 +4,7 @@
     <v-list two-line>
       <v-divider></v-divider>
       <template v-for="todo in allTodos">
-        <v-list-item class="item" v-bind:key="todo.id">
+        <v-list-item class="item" :class="{'item-mobile': mobile}" v-bind:key="todo.id">
           <div class="d-flex flex-column" style="width:100%">
             <div
               class="item-content justify-space-between align-center"
@@ -86,6 +86,9 @@ export default {
       return {
         "--primary-color": globals.color.primary
       };
+    },
+    mobile() {
+      return this.$vuetify.breakpoint.xs;
     }
   },
   methods: {
@@ -168,6 +171,9 @@ export default {
 }
 .item-content {
   width: 100%;
+}
+.item-mobile {
+  padding: 0;
 }
 .item .command {
   display: none;
